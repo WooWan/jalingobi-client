@@ -22,5 +22,5 @@ const pretendard = localFont({
 });
 
 export default function ApplyingFont({ children }: Props) {
-  return <main className={`${pretendard.variable} font-sans`}>{children}</main>;
+  return <main className={pretendard.variable}>{children}</main>;
 }

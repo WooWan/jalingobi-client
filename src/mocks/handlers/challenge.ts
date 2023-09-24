@@ -1,12 +1,13 @@
 import { rest } from 'msw';
 
+import { baseURL } from '@/mocks/base';
 import {
   ChallengeResponse,
   ChallengeSearchResponse,
 } from '@/shared/types/challenge';
 
 export const challengeHandlers = [
-  rest.get('http://localhost:3000/api/challenge/search', (req, res, ctx) => {
+  rest.get(baseURL('/challenge/search'), (req, res, ctx) => {
     const data: ChallengeSearchResponse = {
       isSuccess: true,
       code: 0,
@@ -46,7 +47,7 @@ export const challengeHandlers = [
     return res(ctx.status(200), ctx.json(data));
   }),
 
-  rest.get('http://localhost:3000/api/challenge/:id', (req, res, ctx) => {
+  rest.get(baseURL('/challenge/:id'), (req, res, ctx) => {
     const data: ChallengeResponse = {
       isSuccess: true,
       code: 0,

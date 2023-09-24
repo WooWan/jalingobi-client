@@ -1,5 +1,6 @@
 import { rest } from 'msw';
 
+import { baseURL } from '@/mocks/base';
 import {
   UserChallengeListResult,
   UserProfileResponse,
@@ -7,7 +8,7 @@ import {
 } from '@/shared/types/user';
 
 export const userHandlers = [
-  rest.get('http://localhost:3000/api/mypage', (req, res, ctx) => {
+  rest.get(baseURL('/mypage'), (req, res, ctx) => {
     const data: UserResponse = {
       isSuccess: true,
       code: 1000,
@@ -33,7 +34,7 @@ export const userHandlers = [
     return res(ctx.status(200), ctx.json(data));
   }),
 
-  rest.patch('http://localhost:3000/api/mypage/profile', (req, res, ctx) => {
+  rest.patch(baseURL('/mypage/profile'), (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
@@ -45,7 +46,7 @@ export const userHandlers = [
     );
   }),
 
-  rest.get('http://localhost:3000/api/mypage/challenges', (req, res, ctx) => {
+  rest.get(baseURL('/mypage/challenges'), (req, res, ctx) => {
     const data: UserChallengeListResult = {
       isSuccess: true,
       code: 0,
@@ -91,7 +92,7 @@ export const userHandlers = [
     };
     return res(ctx.status(200), ctx.json(data));
   }),
-  rest.get('http://localhost:3000/api/user/info', (req, res, ctx) => {
+  rest.get(baseURL('/user/info'), (req, res, ctx) => {
     const data: UserProfileResponse = {
       isSuccess: true,
       code: 200,

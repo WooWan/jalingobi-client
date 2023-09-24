@@ -7,7 +7,7 @@ import {
 } from '@/shared/types/user';
 
 export const userHandlers = [
-  rest.get('/api/mypage', (req, res, ctx) => {
+  rest.get('http://localhost:3000/api/mypage', (req, res, ctx) => {
     const data: UserResponse = {
       isSuccess: true,
       code: 1000,
@@ -33,7 +33,7 @@ export const userHandlers = [
     return res(ctx.status(200), ctx.json(data));
   }),
 
-  rest.patch('/api/mypage/profile', (req, res, ctx) => {
+  rest.patch('http://localhost:3000/api/mypage/profile', (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
@@ -91,7 +91,7 @@ export const userHandlers = [
     };
     return res(ctx.status(200), ctx.json(data));
   }),
-  rest.get('/user/info', (req, res, ctx) => {
+  rest.get('http://localhost:3000/api/user/info', (req, res, ctx) => {
     const data: UserProfileResponse = {
       isSuccess: true,
       code: 200,

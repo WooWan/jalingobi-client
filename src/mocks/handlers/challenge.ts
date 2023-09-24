@@ -46,7 +46,7 @@ export const challengeHandlers = [
     return res(ctx.status(200), ctx.json(data));
   }),
 
-  rest.get('/api/challenge/:id', (req, res, ctx) => {
+  rest.get('http://localhost:3000/api/challenge/:id', (req, res, ctx) => {
     const data: ChallengeResponse = {
       isSuccess: true,
       code: 0,

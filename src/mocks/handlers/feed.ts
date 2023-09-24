@@ -4,7 +4,7 @@ import challengeFeed from '../challengeFeed.json';
 import myRoomFeed from '../myRoomFeed.json';
 
 export const feedHandlers = [
-  rest.get(`/challenge/my-list`, (req, res, ctx) => {
+  rest.get(`http://localhost:3000/api/challenge/my-list`, (req, res, ctx) => {
     return res(
       ctx.delay(500),
       ctx.status(200),
@@ -75,45 +75,53 @@ export const feedHandlers = [
       }),
     );
   }),
-  rest.get(`/challenge/:challengeId/proceeding/info`, (req, res, ctx) => {
-    return res(
-      ctx.delay(500),
-      ctx.status(200),
-      ctx.json({
-        isSuccess: true,
-        code: 200,
-        message: '요청에 성공하였습니다.',
-        result: {
-          goalCharge: 100000,
-          currentCharge: 65000,
-          percent: 65,
-          dueDay: 11,
-        },
-      }),
-    );
-  }),
-  rest.get('/challenge/my-room/feed?offset=:offset', (req, res, ctx) => {
-    const offset = req.url.searchParams.get('offset') as string;
-
-    return res(
-      ctx.delay(500),
-      ctx.status(200),
-      ctx.json({
-        isSuccess: true,
-        code: 200,
-        message: '요청에 성공하였습니다.',
-        result: {
-          total: 30,
-          limit: 20,
-          current: offset === '0' ? 20 : 10,
-          myFeedList:
-            offset === '0' ? myRoomFeed.slice(0, 20) : myRoomFeed.slice(20, 30),
-        },
-      }),
-    );
-  }),
   rest.get(
-    '/challenge/:challengeId/feed?offsetRecordId=:offsetRecordId',
+    `http://localhost:3000/api/challenge/:challengeId/proceeding/info`,
+    (req, res, ctx) => {
+      return res(
+        ctx.delay(500),
+        ctx.status(200),
+        ctx.json({
+          isSuccess: true,
+          code: 200,
+          message: '요청에 성공하였습니다.',
+          result: {
+            goalCharge: 100000,
+            currentCharge: 65000,
+            percent: 65,
+            dueDay: 11,
+          },
+        }),
+      );
+    },
+  ),
+  rest.get(
+    'http://localhost:3000/api/challenge/my-room/feed?offset=:offset',
+    (req, res, ctx) => {
+      const offset = req.url.searchParams.get('offset') as string;
+
+      return res(
+        ctx.delay(500),
+        ctx.status(200),
+        ctx.json({
+          isSuccess: true,
+          code: 200,
+          message: '요청에 성공하였습니다.',
+          result: {
+            total: 30,
+            limit: 20,
+            current: offset === '0' ? 20 : 10,
+            myFeedList:
+              offset === '0'
+                ? myRoomFeed.slice(0, 20)
+                : myRoomFeed.slice(20, 30),
+          },
+        }),
+      );
+    },
+  ),
+  rest.get(
+    'http://localhost:3000/api/challenge/:challengeId/feed?offsetRecordId=:offsetRecordId',
     (req, res, ctx) => {
       const offsetRecordId = req.url.searchParams.get('offsetRecordId');
 
@@ -138,66 +146,69 @@ export const feedHandlers = [
       );
     },
   ),
-  rest.get('/record/:challengeId/:recordId', (req, res, ctx) => {
-    return res(
-      ctx.delay(500),
-      ctx.status(200),
-      ctx.json({
-        isSuccess: true,
-        code: 0,
-        message: '요청에 성공하였습니다.',
-        result: {
-          isMine: true,
-          userInfo: {
-            nickname: '현우',
-            imgUrl: '/images/profile.png',
-          },
-          recordInfo: {
-            id: 27,
-            imgUrl: '/images/떡볶이.jpg',
-            title: '기록 타이틀',
-            content: '기록 내용',
-            price: 5000,
-            date: '2023-06-28T14:37:47.323',
-          },
-          emojiInfo: {
-            selected: 'CRAZY',
-            comment: 5,
-            CRAZY: 2,
-            REGRETFUL: 0,
-            WELLDONE: 3,
-          },
-          commentInfoList: [
-            {
-              isMine: true,
-              commenterId: 35,
-              nickname: '댓글 작성자 닉네임',
+  rest.get(
+    'http://localhost:3000/api/record/:challengeId/:recordId',
+    (req, res, ctx) => {
+      return res(
+        ctx.delay(500),
+        ctx.status(200),
+        ctx.json({
+          isSuccess: true,
+          code: 0,
+          message: '요청에 성공하였습니다.',
+          result: {
+            isMine: true,
+            userInfo: {
+              nickname: '현우',
               imgUrl: '/images/profile.png',
-              commentId: 0,
-              content: '댓글 내용',
-              commentDate: '2023-06-28T14:37:47.323',
             },
-            {
-              isMine: true,
-              commenterId: 35,
-              nickname: '댓글 작성자 닉네임',
-              imgUrl: '/images/profile.png',
-              commentId: 1,
-              content: '댓글 내용',
-              commentDate: '2023-06-28T14:37:47.323',
+            recordInfo: {
+              id: 27,
+              imgUrl: '/images/떡볶이.jpg',
+              title: '기록 타이틀',
+              content: '기록 내용',
+              price: 5000,
+              date: '2023-06-28T14:37:47.323',
             },
-            {
-              isMine: true,
-              commenterId: 35,
-              nickname: '댓글 작성자 닉네임',
-              imgUrl: '/images/profile.png',
-              commentId: 2,
-              content: '댓글 내용',
-              commentDate: '2023-06-28T14:37:47.323',
+            emojiInfo: {
+              selected: 'CRAZY',
+              comment: 5,
+              CRAZY: 2,
+              REGRETFUL: 0,
+              WELLDONE: 3,
             },
-          ],
-        },
-      }),
-    );
-  }),
+            commentInfoList: [
+              {
+                isMine: true,
+                commenterId: 35,
+                nickname: '댓글 작성자 닉네임',
+                imgUrl: '/images/profile.png',
+                commentId: 0,
+                content: '댓글 내용',
+                commentDate: '2023-06-28T14:37:47.323',
+              },
+              {
+                isMine: true,
+                commenterId: 35,
+                nickname: '댓글 작성자 닉네임',
+                imgUrl: '/images/profile.png',
+                commentId: 1,
+                content: '댓글 내용',
+                commentDate: '2023-06-28T14:37:47.323',
+              },
+              {
+                isMine: true,
+                commenterId: 35,
+                nickname: '댓글 작성자 닉네임',
+                imgUrl: '/images/profile.png',
+                commentId: 2,
+                content: '댓글 내용',
+                commentDate: '2023-06-28T14:37:47.323',
+              },
+            ],
+          },
+        }),
+      );
+    },
+  ),
 ];

@@ -2,7 +2,7 @@
 
 거지들의 이야기로 쌓이는 소비습관, **자린고비**
 
-[jalingobi.com](https://jalingobi.com/) | [자린고비 Behance](https://www.behance.net/gallery/175690517/-Improve-your-spending-habit-with-your-group)
+[jalingobi.com](https://jalingobi-client.vercel.app) | [자린고비 Behance](https://www.behance.net/gallery/175690517/-Improve-your-spending-habit-with-your-group)
 
 <br>
 

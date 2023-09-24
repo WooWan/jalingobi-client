@@ -23,7 +23,7 @@ export default function GlobalLayout({ children }: GlobalLayoutProps) {
         router.push('/auth/login');
       }
     };
-    validateToken();
+    // validateToken();
   }, []);
 
   useEffect(() => {
